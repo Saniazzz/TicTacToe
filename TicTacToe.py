@@ -6,7 +6,7 @@ class TicTacToe:
                 if board[i*3+j] == 1:      #1 represents X
                     print 'X',
                 elif board[i*3+j] == 0:
-                    print 'O',	           #0 represents 0
+                    print 'O',             #0 represents 0
                 elif board[i*3+j] != -1:   #-1 represents ' '
                     print board[i*3+j]-1,
                 else:
@@ -16,8 +16,8 @@ class TicTacToe:
             print
             if i != 2:
                 print "-----------"
-            else: 
-                print 
+            else:
+                print
 
     def printInstr(self):
         print "Each number represents one of 9 cells from the board:"
@@ -61,16 +61,30 @@ class TicTacToe:
         board = [-1,-1,-1,-1,-1,-1,-1,-1,-1]
         gameOver = False
         move = 0
-	#printing board
-    	self.printBoard(board)
-    	print str(move+1) + " turn:"
-    	#checking whose move current turn is
-    	if move % 2 == 0:
-	    turn = 'X'
-    	else:
-	    turn = 'O'
-    	#geting user input
-    	user = self.getValidTurn(turn)
-    	while board[user] != -1:
-	    print "Invalid move! Cell already taken. Please try again.\n"
-	    user = self.getValidTurn(turn)
+
+        print "Game start"
+        while not gameOver:
+            #printing board
+            self.printBoard(board)
+            print str(move+1) + " turn:"
+            #checking whose move current turn is
+            if move % 2 == 0:
+                turn = 'X'
+            else:
+                turn = 'O'
+            #geting user input
+            user = self.getValidTurn(turn)
+            while board[user] != -1:
+                print "Invalid move! Cell already taken. Please try again.\n"
+                user = self.getValidTurn(turn)
+            board[user] = 1 if turn == 'X' else 0
+            #advancing move and checking for end game
+            move += 1
+            if move > 4:  #end game is only possible at 4+ moves
+                winner = self.checkIfWon(board)
+                if winner != -1:
+                    out = "The winner is "
+                    out += "X" if winner == 1 else "O"
+                    self.quitGame(board,out)
+                elif move == 9:
+                    self.quitGame(board,"No winner")
