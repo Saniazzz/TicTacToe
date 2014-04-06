@@ -49,6 +49,28 @@ class TicTacToe:
                 pass
         return -1
 
+    def quitGame(self, board,message):
+        self.printBoard(board)
+        print message
+        quit()
+
     def run(self):
         #printing instructions
         self.printInstr()
+        #setting board to default settings when all cells are ' '
+        board = [-1,-1,-1,-1,-1,-1,-1,-1,-1]
+        gameOver = False
+        move = 0
+	#printing board
+    	self.printBoard(board)
+    	print str(move+1) + " turn:"
+    	#checking whose move current turn is
+    	if move % 2 == 0:
+	    turn = 'X'
+    	else:
+	    turn = 'O'
+    	#geting user input
+    	user = self.getValidTurn(turn)
+    	while board[user] != -1:
+	    print "Invalid move! Cell already taken. Please try again.\n"
+	    user = self.getValidTurn(turn)
