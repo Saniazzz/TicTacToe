@@ -1,3 +1,28 @@
 class TicTacToe:
-    def run(start):
-        pass
+    def printBoard(self, board):
+        for i in range(3):
+            print "",
+            for j in range(3):
+                if board[i*3+j] == 1:      #1 represents X
+                    print 'X',
+                elif board[i*3+j] == 0:
+                    print 'O',	           #0 represents 0
+                elif board[i*3+j] != -1:   #-1 represents ' '
+                    print board[i*3+j]-1,
+                else:
+                    print ' ',
+                if j != 2:
+                    print "|",
+            print
+            if i != 2:
+                print "-----------"
+            else: 
+                print 
+
+    def printInstr(self):
+        print "Each number represents one of 9 cells from the board:"
+        self.printBoard([2,3,4,5,6,7,8,9,10])
+
+    def run(self):
+        #printing instructions
+        self.printInstr()
