@@ -37,6 +37,18 @@ class TicTacToe:
             except Exception:
                 print user + " is not a valid move! Please try again.\n"
 
+    def checkIfWon(self, board):
+        winCond = ((1,2,3),(4,5,6),(7,8,9),(1,4,7),(2,5,8),(3,6,9),
+                   (1,5,9),(3,5,7))  #all combinations at which player wins
+        for each in winCond:
+            try:
+                if board[each[0]-1] == board[each[1]-1] and \
+                   board[each[1]-1] == board[each[2]-1]:
+                    return board[each[0]-1]
+            except:
+                pass
+        return -1
+
     def run(self):
         #printing instructions
         self.printInstr()
